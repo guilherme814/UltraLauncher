@@ -1,0 +1,36 @@
+# Gradle files
+.gradle/
+build/
+*.apk
+*.aab
+*.jks
+*.keystore
+
+# Android Studio
+.idea/
+.DS_Store
+*.iml
+*.iws
+*.ipr
+
+# Local properties
+local.properties
+gradle.properties
+
+# Signing
+key.jks
+key.properties
+
+# Build output
+output.json
+*.buildinfo
+
+# Native build
+cmake_build_output/
+.cxx/
+
+# Misc
+*.log
+*.swp
+.env
+.vscode/
