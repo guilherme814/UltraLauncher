@@ -31,10 +31,20 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
         }
         debug {
             isMinifyEnabled = false
             isDebuggable = true
+        }
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("keystore/ultra_launcher.keystore")
+            storePassword = System.getenv("KEYSTORE_PASSWORD") ?: "ultralauncher2024"
+            keyAlias = System.getenv("KEY_ALIAS") ?: "ultra_key"
+            keyPassword = System.getenv("KEY_PASSWORD") ?: "ultralauncher2024"
         }
     }
 
@@ -141,4 +151,13 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
+}
+
+tasks.register("buildReleaseAPK") {
+    dependsOn("assembleRelease")
+    doLast {
+        println("✅ UltraLauncher Release APK built successfully!")
+        println("📦 Output: app/build/outputs/apk/release/app-release.apk")
+        println("🔐 Signed and ready for distribution!")
+    }
 }
